@@ -1,18 +1,19 @@
 import { Routes, Route } from "react-router-dom";
+import {SharedLayout, Home, Movies, MovieDetails, Cast, Reviews, NotFound} from "components";
 
 export const App = () => {
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<div>SharedLayout</div>}>
-          <Route index element={<div>Home</div>} />
-          <Route path="/movies" element={<div>Movies</div>} />
-          <Route path="/movies:movieId" element={<div>MovieDetails</div>}>
-            <Route path="cast" element={<div>MovieCast</div>} />
-            <Route path="reviews" element={<div>MovieReviews</div>} />
+        <Route path="/" element={<SharedLayout/>}>
+          <Route index element={<Home/>} />
+          <Route path="/movies" element={<Movies/>} />
+          <Route path="/movies:movieId" element={<MovieDetails/>}>
+            <Route path="cast" element={<Cast/>} />
+            <Route path="reviews" element={<Reviews/>} />
           </Route>
-            <Route path="*" element={<div>Not Found</div>} />
+            <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>
     </>
