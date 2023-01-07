@@ -13,15 +13,16 @@ export const Poster = styled.img`
 
 export const Details = styled.div`
   padding-left: 16px;
+  width: 500px;
 `;
 
 export const Title = styled.h2`
   margin: 0;
-  color: #ffb985;
+  color: #ff6d00;
 `;
 
 export const Votes = styled.span`
-  background-color: #ffb985;
+  background-color: #ff6d00;
   color: #fff;
   padding: 2px 4px;
   border-radius: 5px;
@@ -37,6 +38,6 @@ export const BackLink = styled(NavLink)`
   transition: all 200ms linear;
 
   &:hover {
-    color: #ffb985;
+    color: #ff6d00;
   }
 `;

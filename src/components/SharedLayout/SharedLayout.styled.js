@@ -5,7 +5,7 @@ export const Header = styled.header`
   padding-top: 16px;
   padding-bottom: 16px;
   background-color: #fff;
-  border-bottom: 3px solid #ffb985;
+  border-bottom: 3px solid #ff6d00;
 `;
 
 export const Menu = styled.nav`
@@ -23,13 +23,13 @@ export const StyledLink = styled(NavLink)`
   transition: all 200ms linear;
 
   &:hover:not(.active) {
-    color: #ffb985;
-    border-top: 2px solid #ffb985;
+    color: #ff6d00;
+    border-top: 2px solid #ff6d00;
   }
 
   &.active {
-    color: orange;
-    border-top: 2px solid #ffb985;
+    color: #ff6d00;
+    border-top: 2px solid #ff6d00;
   }
 `;
 
