@@ -31,7 +31,7 @@ const Home = () => {
     }
 
     if (page === 0) {
-      setPage(prevPage => prevPage + 1);
+      setPage(1);
       return;
     }
 
