@@ -35,18 +35,13 @@ export const MovieDetails = () => {
     }
 
     fetchMovieById(movieId);
-  }, []);
+  }, [movieId]);
 
   // const params = useMemo(
   //   () => Object.fromEntries([...searchParams]),
   //   [searchParams]
   // );
   // console.log(params);
-
-  const handleClick = path => {
-    window.open(`https://image.tmdb.org/t/p/w300/${path}`, '_blank');
-    console.log(`clicked`);
-  };
 
   if (!movie) {
     return;
