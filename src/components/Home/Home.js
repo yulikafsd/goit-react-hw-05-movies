@@ -72,10 +72,10 @@ const Home = () => {
                   <Link key={id} to={`movies/${id}`} state={{ from: location }}>
                     <Item>
                       <Poster
-                        src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w300${poster_path}`}
                         alt={original_title}
-                        width="200"
-                        height="300"
+                        width="300"
+                        height="450"
                       />
                       <Title>{title}</Title>
                     </Item>

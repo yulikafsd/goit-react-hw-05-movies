@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-
 export const Poster = styled.img`
   display: block;
   margin: 0;
@@ -12,7 +10,7 @@ export const Poster = styled.img`
 export const List = styled.ul`
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 32px;
   list-style: none;
   margin-top: 16px;
 `;
@@ -20,17 +18,23 @@ export const List = styled.ul`
 export const Item = styled.li`
   padding: 0;
   margin: 0;
-  width: 200px;
+  width: 300px;
   color: #333333;
 `;
 
 export const Subtitle = styled.p`
   margin: 0;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  text-align: center;
+`;
+
+export const Text = styled.p`
+  margin: 0;
   text-align: center;
 `;
 
 export const Span = styled.span`
   color: #ff6d00;
+  font-weight: bold;
 `;

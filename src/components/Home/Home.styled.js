@@ -11,7 +11,7 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 32px;
   margin: 0;
   padding: 0;
   padding-top: 32px;
@@ -41,7 +41,7 @@ export const Title = styled.h2`
   position: absolute;
   top: 0;
   display: flex;
-  width: 180px;
+  width: 280px;
   min-height: 44px;
   margin: 0;
   padding: 10px;

@@ -17,7 +17,7 @@ import {
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState();
   const { movieId } = useParams();
 
   const location = useLocation();
@@ -58,50 +58,43 @@ export const MovieDetails = () => {
   return (
     <>
       <BackLink to={backLink}>&#8656; Back</BackLink>
-      {movie && (
-        <>
-          <Container>
-            <Poster
-              src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-              width="300"
-            />
-            <Details>
-              <Title>{title}</Title>
-              <Subtitle>
-                Released: <Span>{release_date}</Span>
-              </Subtitle>
-              <Subtitle>
-                Average vote: <Votes>{vote}</Votes>
-              </Subtitle>
-              <Subtitle>Overview:</Subtitle>
-              <Text>{overview}</Text>
-              <Subtitle>
-                Genres:
-                <Text>
-                  {genres
-                    .map(({ name }) => {
-                      return name;
-                    })
-                    .join(', ')}
-                </Text>
-              </Subtitle>
-            </Details>
-          </Container>
-          <Subtitle>Additional Information</Subtitle>
-          <StyledLink to={`/movies/${movieId}/cast`} state={{ from: backLink }}>
-            &#8594; Cast
-          </StyledLink>
-          <StyledLink
-            to={`/movies/${movieId}/reviews`}
-            state={{ from: backLink }}
-          >
-            &#8594; Reviews
-          </StyledLink>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </>
-      )}
+      <Container>
+        <Poster
+          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+          width="300"
+        />
+        <Details>
+          <Title>{title}</Title>
+          <Subtitle>
+            Released: <Span>{release_date}</Span>
+          </Subtitle>
+          <Subtitle>
+            Average vote: <Votes>{vote}</Votes>
+          </Subtitle>
+          <Subtitle>Overview:</Subtitle>
+          <Text>{overview}</Text>
+          <Subtitle>
+            Genres:
+            <Text>
+              {genres
+                .map(({ name }) => {
+                  return name;
+                })
+                .join(', ')}
+            </Text>
+          </Subtitle>
+        </Details>
+      </Container>
+      <Subtitle>Additional Information</Subtitle>
+      <StyledLink to={`/movies/${movieId}/cast`} state={{ from: backLink }}>
+        &#8594; Cast
+      </StyledLink>
+      <StyledLink to={`/movies/${movieId}/reviews`} state={{ from: backLink }}>
+        &#8594; Reviews
+      </StyledLink>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

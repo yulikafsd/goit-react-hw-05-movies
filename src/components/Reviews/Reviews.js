@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { Loader } from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_END, API_URL, API_KEY } from 'service/ApiService';
 // import noPoster from '../../images/NoPoster.jpg';
-import { List, Item, Subtitle, Text } from './Reviews.styled';
+import { List, Item, Subtitle, Text, Message } from './Reviews.styled';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState();
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -18,7 +19,6 @@ const Reviews = () => {
       try {
         const response = await axios.get(url, { signal: controller.signal });
         setReviews([...response.data.results]);
-        console.log(response.data.results);
       } catch (error) {
         console.log(error);
       }
@@ -33,7 +33,13 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews && (
+      {!reviews && <Loader />}
+      {reviews && !reviews.length > 0 && (
+        <Message>
+          Sorry, there are no available reviews for this movie...
+        </Message>
+      )}
+      {reviews && reviews.length > 0 && (
         <List>
           {reviews.map(({ id, author, content, created_at }) => {
             const localDate = new Date(created_at).toLocaleString();
