@@ -21,12 +21,26 @@ export const Title = styled.h2`
   color: #ff6d00;
 `;
 
+export const Subtitle = styled.h3`
+  margin-bottom: 0;
+`;
+
+export const Text = styled.p`
+  margin-top: 0;
+  font-weight: normal;
+  font-size: 18px;
+`;
+
 export const Votes = styled.span`
   background-color: #ff6d00;
   color: #fff;
   padding: 2px 4px;
   border-radius: 5px;
   font-weight: bold;
+`;
+
+export const Span = styled.span`
+  font-weight: normal;
 `;
 
 export const BackLink = styled(NavLink)`
@@ -38,6 +52,21 @@ export const BackLink = styled(NavLink)`
   transition: all 200ms linear;
 
   &:hover {
+    color: #ff6d00;
+  }
+`;
+
+export const StyledLink = styled(NavLink)`
+  display: block;
+  margin-left: 20px;
+  width: 100px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333333;
+  transition: all 200ms linear;
+
+  &:hover,
+  &:active {
     color: #ff6d00;
   }
 `;

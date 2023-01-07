@@ -52,37 +52,40 @@ const Home = () => {
 
   return (
     <main>
-      <Heading>Movies of the Week</Heading>
-      <InfiniteScroll
-        dataLength={movies.length} //This is important field to render the next data
-        next={increasePage}
-        hasMore={hasMore}
-        loader={<Loader />}
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        <List>
-          {movies.length > 0 &&
-            movies.map(({ id, title, poster_path, original_title }) => {
-              return (
-                <Link key={id} to={`movies/${id}`} state={{ from: location }}>
-                  <Item>
-                    <Poster
-                      src={`https://image.tmdb.org/t/p/w200${poster_path}`}
-                      alt={original_title}
-                      width="200"
-                      height="300"
-                    />
-                    <Title>{title}</Title>
-                  </Item>
-                </Link>
-              );
-            })}
-        </List>
-      </InfiniteScroll>
+      {movies.length > 0 && (
+        <>
+          <Heading>Movies of the Week</Heading>
+          <InfiniteScroll
+            dataLength={movies.length} //This is important field to render the next data
+            next={increasePage}
+            hasMore={hasMore}
+            loader={<Loader />}
+            endMessage={
+              <p style={{ textAlign: 'center' }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
+            <List>
+              {movies.map(({ id, title, poster_path, original_title }) => {
+                return (
+                  <Link key={id} to={`movies/${id}`} state={{ from: location }}>
+                    <Item>
+                      <Poster
+                        src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+                        alt={original_title}
+                        width="200"
+                        height="300"
+                      />
+                      <Title>{title}</Title>
+                    </Item>
+                  </Link>
+                );
+              })}
+            </List>
+          </InfiniteScroll>
+        </>
+      )}
     </main>
   );
 };

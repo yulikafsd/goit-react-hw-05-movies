@@ -6,8 +6,6 @@ export const API_END = {
   trending: '/trending/movie/week',
   search: '/search/movie',
   details: '/movie/',
-  credits: '/movies/get-movie-credits',
-  reviews: 'movies/get-movie-reviews',
 };
 
 // async function fetchMovies() {

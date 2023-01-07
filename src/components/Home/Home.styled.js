@@ -59,9 +59,4 @@ export const Title = styled.h2`
   text-align: center;
   font-size: 18px;
   line-height: 1.2;
-  /* transition: all 200ms linear;
-
-  &:hover {
-    text-shadow: 0 0 10px #ff6d00, 0 0 30px #ff6d00;
-  } */
 `;
