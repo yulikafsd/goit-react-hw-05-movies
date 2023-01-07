@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   background-color: #fff;
   border-bottom: 3px solid #ffb985;
 `;
@@ -17,7 +17,7 @@ export const Menu = styled.nav`
 export const StyledLink = styled(NavLink)`
   font-size: 20px;
   scale: 1;
-  color: grey;
+  color: #333333;
   text-decoration: none;
   border-top: 2px solid transparent;
   transition: all 200ms linear;
@@ -34,8 +34,8 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const Container = styled.div`
-  padding: 30px;
-  color: grey;
+  padding: 32px;
+  color: #333333;
   font-size: 18px;
   line-height: 1.5;
 `;

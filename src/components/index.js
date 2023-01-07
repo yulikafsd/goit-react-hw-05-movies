@@ -5,3 +5,4 @@ export * from './MovieDetails/MovieDetails';
 export * from './Cast/Cast';
 export * from './Reviews/Reviews';
 export * from './NotFound/NotFound';
+export * from './Loader/Loader';
