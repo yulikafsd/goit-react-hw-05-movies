@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  padding: 32px;
+  color: #333333;
+  font-size: 18px;
+  line-height: 1.5;
+`;
+
 export const Heading = styled.h1`
   margin: 0;
   line-height: 1;

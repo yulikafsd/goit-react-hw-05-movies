@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
+  padding: 32px;
+  color: #333333;
+  font-size: 18px;
+  line-height: 1.5;
+`;
+
+export const Wrapper = styled.div`
   display: flex;
 `;
 
@@ -66,7 +73,7 @@ export const StyledLink = styled(NavLink)`
   transition: all 200ms linear;
 
   &:hover,
-  &:active {
+  &.active {
     color: #ff6d00;
   }
 `;

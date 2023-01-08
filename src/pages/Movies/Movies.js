@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import { SearchBar, FilteredMovies } from 'components';
+import { SearchBar, FilteredMovies, Loader } from 'components';
 import { API_END, API_URL, API_KEY } from 'service/ApiService';
+import {
+  notifyError,
+  notifyEmptyString,
+  notifyNoResults,
+} from 'service/Notifications';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [isNewVisit, setIsNewVisit] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isFirstVisit, setisFirstVisit] = useState(true);
   const filter = searchParams.get('filter') ?? '';
 
   useEffect(() => {
@@ -18,10 +24,18 @@ const Movies = () => {
       const url = `${API_URL}${API_END.search}?api_key=${API_KEY}&query=${query}`;
 
       try {
+        setIsLoading(true);
         const response = await axios.get(url, { signal: controller.signal });
         setMovies([...response.data.results]);
+
+        if (response.data.results.length === 0) {
+          notifyNoResults();
+        }
       } catch (error) {
         console.log(error);
+        notifyError();
+      } finally {
+        setIsLoading(false);
       }
 
       return () => {
@@ -35,12 +49,11 @@ const Movies = () => {
   }, [query]);
 
   useEffect(() => {
-    console.log('First visit: ' + isFirstVisit);
-    if (isFirstVisit) {
+    if (isNewVisit) {
       setQuery(filter);
-      setisFirstVisit(false);
+      setIsNewVisit(false);
     }
-  }, [filter, isFirstVisit]);
+  }, [filter, isNewVisit]);
 
   function changeFilter(value) {
     setSearchParams(value !== '' ? { filter: value.toLowerCase() } : {});
@@ -49,25 +62,25 @@ const Movies = () => {
   function changeQuery(e) {
     e.preventDefault();
     const trimmedFilter = filter.trim();
-    console.log(trimmedFilter);
 
     if (trimmedFilter !== '') {
       setQuery(trimmedFilter);
       setSearchParams({ filter: trimmedFilter.toLowerCase() });
     } else {
-      console.log(`This query is an empty string`);
+      notifyEmptyString();
     }
   }
 
   return (
-    <main>
+    <>
       <SearchBar
         value={filter}
         onChange={changeFilter}
         onSubmit={changeQuery}
       />
+      {isLoading && movies.length === 0 && <Loader />}
       {movies.length > 0 && <FilteredMovies movies={movies} />}
-    </main>
+    </>
   );
 };
 

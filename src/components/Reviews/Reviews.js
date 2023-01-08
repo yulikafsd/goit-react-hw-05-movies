@@ -3,8 +3,8 @@ import { Loader } from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_END, API_URL, API_KEY } from 'service/ApiService';
-// import noPoster from '../../images/NoPoster.jpg';
 import { List, Item, Subtitle, Text, Message } from './Reviews.styled';
+import { notifyError } from 'service/Notifications';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState();
@@ -21,6 +21,9 @@ const Reviews = () => {
         setReviews([...response.data.results]);
       } catch (error) {
         console.log(error);
+        if (error.message !== 'canceled') {
+          notifyError();
+        }
       }
     }
 
@@ -35,9 +38,7 @@ const Reviews = () => {
     <>
       {!reviews && <Loader />}
       {reviews && !reviews.length > 0 && (
-        <Message>
-          Sorry, there are no available reviews for this movie...
-        </Message>
+        <Message>Sorry, there are no reviews for this movie...</Message>
       )}
       {reviews && reviews.length > 0 && (
         <List>

@@ -4,7 +4,16 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_END, API_URL, API_KEY } from 'service/ApiService';
 import noProfileFoto from '../../images/NoProfileFoto.jpg';
-import { List, Item, Poster, Subtitle, Text, Span } from './Cast.styled';
+import {
+  List,
+  Item,
+  Poster,
+  Subtitle,
+  Text,
+  Span,
+  Message,
+} from './Cast.styled';
+import { notifyError } from 'service/Notifications';
 
 const Cast = () => {
   const [cast, setCast] = useState();
@@ -21,6 +30,9 @@ const Cast = () => {
         setCast([...response.data.cast]);
       } catch (error) {
         console.log(error);
+        if (error.message !== 'canceled') {
+          notifyError();
+        }
       }
     }
 
@@ -33,7 +45,11 @@ const Cast = () => {
 
   return (
     <>
-      {cast ? (
+      {!cast && <Loader />}
+      {cast && !cast.length > 0 && (
+        <Message>Sorry, there is no cast available for this movie...</Message>
+      )}
+      {cast && cast.length > 0 && (
         <List>
           {cast.map(({ cast_id, name, character, profile_path }) => {
             const imgSrc = profile_path
@@ -50,8 +66,6 @@ const Cast = () => {
             );
           })}
         </List>
-      ) : (
-        <Loader />
       )}
     </>
   );

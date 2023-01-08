@@ -38,3 +38,9 @@ export const Span = styled.span`
   color: #ff6d00;
   font-weight: bold;
 `;
+
+export const Message = styled.p`
+  text-align: center;
+  font-style: italic;
+  color: #ff6d00;
+`;

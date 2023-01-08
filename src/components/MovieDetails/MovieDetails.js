@@ -15,7 +15,9 @@ import {
   Votes,
   BackLink,
   StyledLink,
+  Wrapper,
 } from './MovieDetails.styled';
+import { notifyError } from 'service/Notifications';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState();
@@ -37,6 +39,9 @@ export const MovieDetails = () => {
         setMovie({ ...response.data });
       } catch (error) {
         console.log(error);
+        if (error.message !== 'canceled') {
+          notifyError();
+        }
       }
     }
 
@@ -54,15 +59,15 @@ export const MovieDetails = () => {
   const { title, poster_path, vote_average, release_date, overview, genres } =
     movie;
 
-  const vote = Number(vote_average).toFixed(2);
+  const vote = vote_average ? Number(vote_average).toFixed(2) : 'not available';
   const imgSrc = poster_path
     ? `https://image.tmdb.org/t/p/w300/${poster_path}`
     : NoPoster;
 
   return (
-    <>
+    <Container>
       <BackLink to={backLink}>&#8656; Back</BackLink>
-      <Container>
+      <Wrapper>
         <Poster src={imgSrc} width="300" />
         <Details>
           <Title>{title}</Title>
@@ -85,7 +90,7 @@ export const MovieDetails = () => {
             </Text>
           </Subtitle>
         </Details>
-      </Container>
+      </Wrapper>
       <Subtitle>Additional Information</Subtitle>
       <StyledLink to={`/movies/${movieId}/cast`} state={{ from: backLink }}>
         &#8594; Cast
@@ -96,6 +101,6 @@ export const MovieDetails = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </Container>
   );
 };

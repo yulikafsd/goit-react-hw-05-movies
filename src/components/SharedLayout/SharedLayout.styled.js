@@ -32,10 +32,3 @@ export const StyledLink = styled(NavLink)`
     border-top: 2px solid #ff6d00;
   }
 `;
-
-export const Container = styled.div`
-  padding: 32px;
-  color: #333333;
-  font-size: 18px;
-  line-height: 1.5;
-`;

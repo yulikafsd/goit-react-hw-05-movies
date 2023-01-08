@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { List, Item, Poster, Title } from './FilteredMovies.styled';
+import PropTypes from 'prop-types';
 import noPoster from '../../images/NoPoster.jpg';
 
 export const FilteredMovies = ({ movies }) => {
@@ -27,4 +28,15 @@ export const FilteredMovies = ({ movies }) => {
       })}
     </List>
   );
+};
+
+FilteredMovies.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+      original_title: PropTypes.string.isRequired,
+    })
+  ),
 };
