@@ -3,7 +3,7 @@ import { Loader } from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_END, API_URL, API_KEY } from 'service/ApiService';
-import noPoster from '../../images/NoPoster.jpg';
+import noProfileFoto from '../../images/NoProfileFoto.jpg';
 import { List, Item, Poster, Subtitle, Text, Span } from './Cast.styled';
 
 const Cast = () => {
@@ -38,7 +38,7 @@ const Cast = () => {
           {cast.map(({ cast_id, name, character, profile_path }) => {
             const imgSrc = profile_path
               ? `https://image.tmdb.org/t/p/w300${profile_path}`
-              : noPoster;
+              : noProfileFoto;
             return (
               <Item key={cast_id}>
                 <Poster src={imgSrc} alt={name} width="300" height="450" />

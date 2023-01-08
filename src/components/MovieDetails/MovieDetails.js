@@ -3,6 +3,7 @@ import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useState, useMemo, useEffect, Suspense } from 'react';
 import { API_END, API_KEY, API_URL } from 'service/ApiService';
 import { Loader } from 'components';
+import NoPoster from '../../images/NoPoster.jpg';
 import {
   Container,
   Poster,
@@ -54,15 +55,15 @@ export const MovieDetails = () => {
     movie;
 
   const vote = Number(vote_average).toFixed(2);
+  const imgSrc = poster_path
+    ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+    : NoPoster;
 
   return (
     <>
       <BackLink to={backLink}>&#8656; Back</BackLink>
       <Container>
-        <Poster
-          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-          width="300"
-        />
+        <Poster src={imgSrc} width="300" />
         <Details>
           <Title>{title}</Title>
           <Subtitle>
